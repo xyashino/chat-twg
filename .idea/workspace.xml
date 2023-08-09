@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed089e23-3994-4b4b-a930-4ff70d638260" name="Changes" comment="Init">
+    <list default="true" id="ed089e23-3994-4b4b-a930-4ff70d638260" name="Changes" comment="Update path aliases in tsconfig and babel config &#10;&#10;Changed the base path for the &quot;@&quot; alias in tsconfig.json and babel.config.js. Previously it was pointing to &quot;app&quot;, now it's been updated to root directory &quot;./&quot;.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +49,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feature/setup",
+    "last_opened_file_path": "/home/xyashino/Documents/chat-twg/assets/fonts",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,9 +60,13 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/fonts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/assets/fonts" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="RunManager">
@@ -118,7 +122,39 @@
       <option name="project" value="LOCAL" />
       <updated>1691575828360</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update path aliases for cleaner imports &amp;&amp; upgrade packages&#10;&#10;Added alias paths in tsconfig.json, updated app/index.ts to use the new alias, and included 'module-resolver' plugin in babel.config.js to support the new alias paths. The change is necessary to make the import paths cleaner and easier to manage as the project grows.">
+      <option name="closed" value="true" />
+      <created>1691577107917</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691577107917</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add all fonts into ./assets/fonts/* directory">
+      <option name="closed" value="true" />
+      <created>1691578217905</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691578217905</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Move App.tsx into root directory and Implement base Regular Poppins font import">
+      <option name="closed" value="true" />
+      <created>1691578344504</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691578344504</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update path aliases in tsconfig and babel config &#10;&#10;Changed the base path for the &quot;@&quot; alias in tsconfig.json and babel.config.js. Previously it was pointing to &quot;app&quot;, now it's been updated to root directory &quot;./&quot;.">
+      <option name="closed" value="true" />
+      <created>1691578397208</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691578397208</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +162,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init" />
+    <MESSAGE value="Update path aliases for cleaner imports &amp;&amp; upgrade packages&#10;&#10;Added alias paths in tsconfig.json, updated app/index.ts to use the new alias, and included 'module-resolver' plugin in babel.config.js to support the new alias paths. The change is necessary to make the import paths cleaner and easier to manage as the project grows." />
+    <MESSAGE value="Moved " />
+    <MESSAGE value="Add all fonts into ./assets/fonts/* directory" />
+    <MESSAGE value="Move App.tsx into root directory and Implement base Regular Poppins font import" />
+    <MESSAGE value="Update path aliases in tsconfig and babel config &#10;&#10;Changed the base path for the &quot;@&quot; alias in tsconfig.json and babel.config.js. Previously it was pointing to &quot;app&quot;, now it's been updated to root directory &quot;./&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update path aliases in tsconfig and babel config &#10;&#10;Changed the base path for the &quot;@&quot; alias in tsconfig.json and babel.config.js. Previously it was pointing to &quot;app&quot;, now it's been updated to root directory &quot;./&quot;." />
   </component>
 </project>

@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
+import {NavigationContainer} from "@react-navigation/native";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -11,10 +12,12 @@ export default function App() {
   }
 
   return (
+      <NavigationContainer>
       <View style={styles.container} >
         <Text style={{ fontFamily: 'Poppins', fontSize: 30 , fontWeight:"bold" }}>Inter Black</Text>
         <Text style={{ fontSize: 49 }}>Platform Default</Text>
       </View>
+      </NavigationContainer>
   );
 }
 
