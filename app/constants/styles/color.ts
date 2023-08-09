@@ -1,4 +1,4 @@
-export const Colors: Record<string, string> = {
+export const Colors = {
   //PLUM
   plum: "#5603AD",
   plumAccent: "#390273",
