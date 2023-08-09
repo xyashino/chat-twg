@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Circle, Path } from "react-native-svg";
 
-const Plus = (props) => (
+export const Plus = (props) => (
   <Svg
     width={44}
     height={44}

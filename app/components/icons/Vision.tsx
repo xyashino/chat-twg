@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Circle, Path } from "react-native-svg";
 
-const Vision = (props) => (
+export const Vision = (props) => (
   <Svg
     width={44}
     height={44}

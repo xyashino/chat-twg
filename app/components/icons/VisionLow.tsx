@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const VisionLow = (props) => (
+export const VisionLow = (props) => (
   <Svg
     width={18}
     height={18}

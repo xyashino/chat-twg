@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Circle, Path } from "react-native-svg";
 
-const VideoCall = (props) => (
+export const VideoCall = (props) => (
   <Svg
     width={44}
     height={44}
