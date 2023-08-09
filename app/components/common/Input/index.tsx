@@ -5,6 +5,8 @@ import { Label } from "@/app/components/typography/Label";
 import { Colors } from "@/app/constants/styles/color";
 import { Caption } from "@/app/components/typography/Caption";
 import { inputStyle } from "@/app/components/common/Input/styles";
+import { useSecureToggle } from "@/app/hooks/useSecureToggle";
+import { SecureToggleIcons } from "@/app/components/common/Input/secureToggleIcons";
 
 interface InputProps extends TextInputProps {
   label?: string;
@@ -19,6 +21,7 @@ export const Input = ({
   ...props
 }: InputProps) => {
   const { isFocused, methods } = useFocus();
+  const { display, toggleMethods } = useSecureToggle(secureTextEntry);
 
   return (
     <View style={inputStyle.container}>
@@ -40,9 +43,10 @@ export const Input = ({
             ...methods,
             ...props,
             editable,
-            secureTextEntry,
+            secureTextEntry: toggleMethods.isSecure,
           }}
         />
+        {display && <SecureToggleIcons {...toggleMethods} />}
       </View>
 
       {!!error && !!editable && (
