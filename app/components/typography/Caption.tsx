@@ -1,7 +1,7 @@
 import React from "react";
 import { Platform, StyleSheet, Text } from "react-native";
 import { FontName } from "@/app/enums/styles/font-name";
-import { PropsWithColorAndChildren } from "@/app/types/common";
+import { ReusableItemProps } from "@/app/types/common";
 import { Colors } from "@/app/constants/styles/color";
 
 const captionStyles = StyleSheet.create({
@@ -24,8 +24,9 @@ const captionStyles = StyleSheet.create({
 export const Caption = ({
   children,
   color = "black",
-}: PropsWithColorAndChildren) => (
-  <Text style={{ ...captionStyles.text, color: Colors[color] }}>
+  style = {},
+}: ReusableItemProps) => (
+  <Text style={[{ ...captionStyles.text, color: Colors[color] }, style]}>
     {children}
   </Text>
 );

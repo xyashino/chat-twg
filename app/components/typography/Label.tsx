@@ -1,14 +1,23 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { Text } from "react-native";
 import { FontName } from "@/app/enums/styles/font-name";
-import { PropsWithColorAndChildren } from "@/app/types/common";
+import { ReusableItemProps } from "@/app/types/common";
+import { Colors } from "@/app/constants/styles/color";
 
-export const Label = ({ children }: PropsWithColorAndChildren) => (
+export const Label = ({
+  children,
+  style,
+  color = "black",
+}: ReusableItemProps) => (
   <Text
-    style={{
-      fontFamily: FontName.PoppinsMedium,
-      fontSize: 16,
-    }}
+    style={[
+      {
+        fontFamily: FontName.PoppinsMedium,
+        fontSize: 16,
+        backgroundColor: Colors[color],
+      },
+      style,
+    ]}
   >
     {children}
   </Text>

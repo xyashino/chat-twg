@@ -1,10 +1,10 @@
 import React from "react";
 import { Text } from "react-native";
 import { headingStyles } from "@/app/components/typography/Heading/styles";
-import { HeadingLevels, PropsWithColorAndChildren } from "@/app/types/common";
-import { ColorName, Colors } from "@/app/constants/styles/color";
+import { HeadingLevels, ReusableItemProps } from "@/app/types/common";
+import { Colors } from "@/app/constants/styles/color";
 
-interface HeadingProps extends PropsWithColorAndChildren {
+interface HeadingProps extends ReusableItemProps {
   level?: HeadingLevels;
 }
 
@@ -12,8 +12,9 @@ export const Heading = ({
   children,
   level = "h1",
   color = "black",
+  style,
 }: HeadingProps) => (
-  <Text style={{ ...headingStyles[level], color: Colors[color] }}>
+  <Text style={[{ ...headingStyles[level], color: Colors[color] }, style]}>
     {children}
   </Text>
 );
