@@ -14,7 +14,7 @@ export const Label = ({
       {
         fontFamily: FontName.PoppinsMedium,
         fontSize: 16,
-        backgroundColor: Colors[color],
+        color: Colors[color],
       },
       style,
     ]}
