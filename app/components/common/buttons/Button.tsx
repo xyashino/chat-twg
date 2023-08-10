@@ -20,6 +20,7 @@ export const Button = ({
   return (
     <TouchableOpacity
       style={[buttonStyle.defaultStyles, buttonStyle[type], style]}
+      disabled={type === "disabled"}
       {...props}
     >
       <ButtonText color="white">{children}</ButtonText>
