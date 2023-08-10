@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { Avatar } from "@/app/components/common/Avatar";
 import { Colors } from "@/app/constants/styles/color";
 import { useNavigation } from "@react-navigation/native";
@@ -13,6 +13,7 @@ interface RoomProps {
   lastMessageTime?: string;
   avatar?: string;
   isOnline?: boolean;
+  id: string;
 }
 
 export const Room = ({
@@ -20,28 +21,30 @@ export const Room = ({
   lastMessage,
   lastMessageTime = "Unknown time",
   isOnline = false,
+  id,
 }: RoomProps) => {
   const { navigate } =
     useNavigation<SetNavigationParamsTypes<NavigationName.Chat>>();
 
   return (
-    <Pressable
+    <TouchableOpacity
       style={[styles.roomContainer, isOnline && styles.onlineContainer]}
       onPress={() => {
         navigate(NavigationName.Chat, {
-          chatName: chatName,
-          chatId: `${Date.now()}`,
+          id,
         });
       }}
     >
-      <Avatar size="large" />
-      <HeaderTextContent
-        chatName={chatName}
-        lastMessage={lastMessage ?? "No messages yet"}
-        isOnline={isOnline}
-      />
-      <ConnectionInfo isOnline={isOnline} lastMessageTime={lastMessageTime} />
-    </Pressable>
+      <>
+        <Avatar size="large" />
+        <HeaderTextContent
+          chatName={chatName}
+          lastMessage={lastMessage ?? "No messages yet"}
+          isOnline={isOnline}
+        />
+        <ConnectionInfo isOnline={isOnline} lastMessageTime={lastMessageTime} />
+      </>
+    </TouchableOpacity>
   );
 };
 
@@ -53,7 +56,6 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: Colors.white,
     borderRadius: 12,
-    gap: 16,
     position: "relative",
     overflow: "hidden",
   },
