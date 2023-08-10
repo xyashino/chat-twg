@@ -9,8 +9,7 @@ export type RootStackParamList = {
 };
 
 interface ChatScreenProps {
-  chatName: string;
-  chatId: string;
+  id: string;
 }
 
 export type SetNavigationParamsTypes<T extends NavigationName> = NavigationProp<
