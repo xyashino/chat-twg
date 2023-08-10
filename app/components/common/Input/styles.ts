@@ -8,7 +8,8 @@ export const inputStyle = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderWidth: 2,
-    borderColor: Colors.whiteGray,
+    borderColor: Colors.whiteBlue,
+    backgroundColor: Colors.white,
     fontFamily: FontName.PoppinsMedium,
     fontSize: 15,
     lineHeight: 15,
@@ -17,6 +18,7 @@ export const inputStyle = StyleSheet.create({
   container: {
     width: "90%",
     gap: 4,
+    marginHorizontal: "auto",
   },
   inputContainer: {
     position: "relative",
