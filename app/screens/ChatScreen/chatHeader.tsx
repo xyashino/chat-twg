@@ -5,16 +5,14 @@ import { VideoCall } from "@/app/components/icons/VideoCall";
 import { BackButton } from "@/app/components/common/buttons/BackButton";
 import { Avatar } from "@/app/components/common/Avatar";
 import { Heading } from "@/app/components/typography/Heading";
-import { Caption } from "@/app/components/typography/Caption";
 import { HeaderContainer } from "@/app/components/HeaderContainer";
-import { useRoute } from "@react-navigation/native";
-import { GetNavigationParamsTypes } from "@/app/types/root-params";
-import { NavigationName } from "@/app/enums/navigation-name";
+import { Caption } from "@/app/components/typography/Caption";
 
-export const ChatHeader = () => {
-  const { params } = useRoute<GetNavigationParamsTypes<NavigationName.Chat>>();
-  const chatName = params.chatName ?? "Default chat name";
+interface Props {
+  chatName?: string;
+}
 
+export const ChatHeader = ({ chatName }: Props) => {
   return (
     <HeaderContainer
       actionSection={
@@ -28,10 +26,15 @@ export const ChatHeader = () => {
         <BackButton />
         <Avatar />
         <View style={styles.textWrapper}>
-          <Heading color={"plum"} level="h4">
-            {chatName}
+          <Heading
+            color={"plum"}
+            level="h4"
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {chatName || "Loading..."}
           </Heading>
-          <Caption color="white">last seen 12:00</Caption>
+          <Caption color="white">Active now</Caption>
         </View>
       </View>
     </HeaderContainer>
@@ -43,11 +46,12 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    gap: 12,
+    gap: 6,
   },
   textWrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    flexShrink: 1,
   },
 });

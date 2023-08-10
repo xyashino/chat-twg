@@ -1,58 +1,42 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { ChatHeader } from "@/app/screens/ChatScreen/chatHeader";
+import React, { useCallback } from "react";
 import { View, StyleSheet } from "react-native";
-import { SendMsgFooter } from "@/app/screens/ChatScreen/sendMsgFooter";
+import { useRoute } from "@react-navigation/native";
+import { GiftedChat } from "react-native-gifted-chat";
+import { ChatHeader } from "@/app/screens/ChatScreen/chatHeader";
+import { ChatInputFooter } from "@/app/screens/ChatScreen/chatInputFooter";
 import { Colors } from "@/app/constants/styles/color";
-import { GiftedChat, IMessage } from "react-native-gifted-chat";
+import { GetNavigationParamsTypes } from "@/app/types/root-params";
+import { NavigationName } from "@/app/enums/navigation-name";
+import { useChatLogic } from "@/app/hooks/useChatLogic";
+import { ChatBubble } from "@/app/screens/ChatScreen/chatBubble";
 
 export const ChatScreen = () => {
-  const [messages, setMessages] = useState<IMessage[]>([]);
-  const [inputText, setInputText] = useState<string>("");
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: "Hello developer",
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: "React Native",
-          avatar: "https://placeimg.com/140/140/any",
-        },
-      },
-    ]);
-  }, []);
+  const {
+    params: { id: roomId },
+  } = useRoute<GetNavigationParamsTypes<NavigationName.Chat>>();
 
-  const onSend = useCallback((messages: IMessage[] = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages),
-    );
-  }, []);
+  const { data, messages, sendMessage } = useChatLogic(roomId);
+
+  const myId = data?.room?.user?.id || "fallbackId";
+
+  const handleSend = useCallback(
+    (messageText: string) => {
+      if (!messageText) return;
+      return sendMessage(messageText);
+    },
+    [sendMessage],
+  );
+
   return (
     <View style={styles.container}>
-      <ChatHeader />
+      <ChatHeader chatName={data?.room?.name || "loading..."} />
       <GiftedChat
         messages={messages}
-        onSend={(messages) => onSend(messages)}
-        user={{
-          _id: 1,
-        }}
-        renderInputToolbar={() => null}
-      />
-      <SendMsgFooter
-        text={inputText}
-        onChangeText={(text: string) => setInputText(text)}
-        onSend={() => {
-          onSend([
-            {
-              _id: `${Math.random() * 100}`,
-              text: inputText,
-              createdAt: new Date(),
-              user: { _id: 1 },
-            },
-          ]);
-          setInputText("");
-        }}
+        onSend={(msgs) => handleSend(msgs[0].text)}
+        user={{ _id: myId }}
+        messagesContainerStyle={styles.messageContainer}
+        renderInputToolbar={() => <ChatInputFooter sendMessage={handleSend} />}
+        renderBubble={(props) => <ChatBubble {...props} />}
       />
     </View>
   );
@@ -67,5 +51,6 @@ const styles = StyleSheet.create({
   messageContainer: {
     flexGrow: 1,
     width: "100%",
+    paddingBottom: 40,
   },
 });
