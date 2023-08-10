@@ -3,23 +3,22 @@ import { View, StyleSheet } from "react-native";
 import { Input } from "@/app/components/common/Input";
 import { Button } from "@/app/components/common/buttons/Button";
 import { useForm, Controller } from "react-hook-form";
-import { EMAIL_REGEX } from "@/app/constants/regex";
-import {
-  INVALID_EMAIL,
-  INVALID_PASSWORD,
-  REQUIRED_EMAIL,
-  REQUIRED_PASSWORD,
-} from "@/app/constants/validation-messages";
 import { LoginFormData } from "@/app/types/login-form-data";
 import { useLogin } from "@/app/hooks/useLogin";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {LoginFormSchema} from "@/app/screens/LoginScreen/login-form-schema";
 
 export const LoginForm = () => {
+  const formOptions = {resolver: yupResolver(LoginFormSchema)}
+
   const {
+    register,
     control,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<LoginFormData>();
+  } = useForm<LoginFormData>(formOptions);
+
   const { onLogin, loading } = useLogin(setError);
 
   return (
@@ -27,11 +26,7 @@ export const LoginForm = () => {
       <View style={styles.form}>
         <Controller
           control={control}
-          name="email"
-          rules={{
-            required: { message: REQUIRED_EMAIL, value: true },
-            pattern: { value: EMAIL_REGEX, message: INVALID_EMAIL },
-          }}
+          {...register('email')}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="e-mail address"
@@ -44,11 +39,7 @@ export const LoginForm = () => {
         />
         <Controller
           control={control}
-          name="password"
-          rules={{
-            required: { message: REQUIRED_PASSWORD, value: true },
-            minLength: { value: 8, message: INVALID_PASSWORD },
-          }}
+          {...register('password')}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="password"
