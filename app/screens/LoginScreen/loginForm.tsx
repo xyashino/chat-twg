@@ -2,12 +2,23 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Input } from "@/app/components/common/Input";
 import { Button } from "@/app/components/common/buttons/Button";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useLogin } from "@/app/hooks/useLogin";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginFormSchema } from "@/app/screens/LoginScreen/login-form-schema";
+import { LoginFormData } from "@/app/types/login-form-data";
 
 export const LoginForm = () => {
-  const { onLogin, loading, control, register, errors, handleSubmit } =
-    useLogin();
+  const formOptions = { resolver: yupResolver(LoginFormSchema) };
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<LoginFormData>(formOptions);
+  const { loading, loginMethod } = useLogin(setError);
 
   return (
     <>
@@ -43,7 +54,7 @@ export const LoginForm = () => {
       <Button
         style={styles.button}
         type={loading ? "disabled" : "default"}
-        onPress={handleSubmit(onLogin)}
+        onPress={handleSubmit(loginMethod)}
       >
         Log in
       </Button>

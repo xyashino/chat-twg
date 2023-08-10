@@ -2,11 +2,24 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Input } from "@/app/components/common/Input";
 import { Button } from "@/app/components/common/buttons/Button";
-import { Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useRegistration } from "@/app/hooks/useRegistration";
+import { Caption } from "@/app/components/typography/Caption";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { SignUpFormSchema } from "@/app/screens/SingUpScreen/sign-up-form-schema";
+import { RegisterUserData } from "@/app/types/register-user-data";
 
 export const SignUpForm = () => {
-  const { control, errors, register, handleSubmit } = useRegistration();
+  const formOptions = { resolver: yupResolver(SignUpFormSchema) };
+
+  const {
+    handleSubmit,
+    formState: { errors },
+    control,
+    register,
+    setError,
+  } = useForm<RegisterUserData>(formOptions);
+  const { loading, creatAccount } = useRegistration(setError);
 
   return (
     <>
@@ -80,7 +93,10 @@ export const SignUpForm = () => {
           )}
         />
       </View>
-      <Button style={styles.button} onPress={handleSubmit}>
+      {errors.root?.message && (
+        <Caption color="error"> {errors.root?.message} </Caption>
+      )}
+      <Button style={styles.button} onPress={handleSubmit(creatAccount)} type={loading ? "disabled" : "default"}>
         Sign up
       </Button>
     </>
