@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from "react";
-import { StyleSheet, TextStyle, TouchableOpacity} from "react-native";
+import { StyleSheet, TextStyle, TouchableOpacity } from "react-native";
 import { ButtonText } from "@/app/components/typography/ButtonText";
 import { Colors } from "@/app/constants/styles/color";
-import {TouchableProps} from "react-native-svg";
+import { TouchableProps } from "react-native-svg";
 
 interface Props
   extends PropsWithChildren,
