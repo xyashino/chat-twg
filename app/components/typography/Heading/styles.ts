@@ -6,7 +6,8 @@ export const headingStyles = StyleSheet.create({
   h1: {
     fontFamily: FontName.PoppinsBold,
     fontSize: 36,
-    fontWeight: "bold",
+    marginVertical: 20,
+    marginLeft: 10,
   },
   h2: {
     fontFamily: FontName.PoppinsBold,
@@ -17,7 +18,7 @@ export const headingStyles = StyleSheet.create({
     fontSize: 22,
   },
   h4: {
-    fontFamily: FontName.PoppinsBold,
+    fontFamily: FontName.PoppinsSemiBold,
     fontSize: 18,
   },
 } as Record<HeadingLevels, object>);

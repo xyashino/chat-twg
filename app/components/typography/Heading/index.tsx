@@ -10,7 +10,7 @@ interface HeadingProps extends ReusableItemProps {
 
 export const Heading = ({
   children,
-  level = "h1",
+  level = "h2",
   color = "black",
   style,
 }: HeadingProps) => (
