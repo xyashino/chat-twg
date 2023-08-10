@@ -1,10 +1,10 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, ImageSourcePropType, StyleSheet } from "react-native";
 import { Profile } from "@/app/components/icons/Profile";
 
 interface Props {
   size?: "small" | "medium" | "large";
-  source?: string;
+  source?: ImageSourcePropType;
 }
 
 export const Avatar = ({ size = "medium", source }: Props) => {
