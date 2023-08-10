@@ -23,7 +23,7 @@ export const ChatInputFooter = ({ sendMessage }: ChatInputFooter) => {
       renderComposer={() => (
         <Input
           style={styles.input}
-          defaultValue={text}
+          value={text}
           onChangeText={setText}
           placeholder="Type a message..."
         />

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { TextInput, TextInputProps, View } from "react-native";
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 import { useFocus } from "@/app/hooks/useFocus";
 import { Label } from "@/app/components/typography/Label";
 import { Colors } from "@/app/constants/styles/color";
@@ -10,7 +11,11 @@ import { SecureToggleIcons } from "@/app/components/common/Input/secureToggleIco
 
 interface InputProps extends TextInputProps {
   label?: string;
-  error?: string;
+  error?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<any>>
+    | undefined;
 }
 
 export const Input = ({
@@ -24,11 +29,6 @@ export const Input = ({
 }: InputProps) => {
   const { isFocused, methods } = useFocus();
   const { display, toggleMethods } = useSecureToggle(secureTextEntry);
-  const [text, setText] = useState(defaultValue);
-
-  useEffect(() => {
-    setText(defaultValue);
-  }, [defaultValue]);
 
   return (
     <View style={inputStyle.container}>
@@ -47,21 +47,19 @@ export const Input = ({
             !editable && inputStyle.disabled,
             style,
           ]}
-          onChangeText={setText}
           {...{
             ...methods,
             ...props,
             editable,
             secureTextEntry: toggleMethods.isSecure,
           }}
-          value={text}
         />
         {display && <SecureToggleIcons {...toggleMethods} />}
       </View>
 
       {!!error && !!editable && (
         <Caption color="error" style={inputStyle.caption}>
-          Nieprawidałowe dane
+          {typeof error === "string" ? error : error.message?.toString()}
         </Caption>
       )}
     </View>
