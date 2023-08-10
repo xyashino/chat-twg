@@ -1,13 +1,14 @@
 import React from "react";
-import { Pressable, PressableProps } from "react-native";
+import { TouchableOpacity} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LeftArrow } from "@/app/components/icons/LeftArrow";
+import {TouchableProps} from "react-native-svg";
 
-export const BackButton = (props: Omit<PressableProps, "onPress">) => {
+export const BackButton = (props: Omit<TouchableProps, "onPress">) => {
   const { goBack } = useNavigation();
   return (
-    <Pressable onPress={goBack} {...props}>
+    <TouchableOpacity onPress={goBack} {...props}>
       <LeftArrow />
-    </Pressable>
+    </TouchableOpacity>
   );
 };

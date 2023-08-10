@@ -1,9 +1,12 @@
 import React, { PropsWithChildren } from "react";
-import { Pressable, PressableProps, StyleSheet, TextStyle } from "react-native";
+import { StyleSheet, TextStyle, TouchableOpacity} from "react-native";
 import { ButtonText } from "@/app/components/typography/ButtonText";
 import { Colors } from "@/app/constants/styles/color";
+import {TouchableProps} from "react-native-svg";
 
-interface Props extends PropsWithChildren, Pick<PressableProps, "onPressIn"> {
+interface Props
+  extends PropsWithChildren,
+    Omit<TouchableProps, "style" | "children"> {
   type?: "default" | "disabled" | "pressed";
   style?: TextStyle;
 }
@@ -15,12 +18,12 @@ export const Button = ({
   ...props
 }: Props) => {
   return (
-    <Pressable
+    <TouchableOpacity
       style={[buttonStyle.defaultStyles, buttonStyle[type], style]}
       {...props}
     >
       <ButtonText color="white">{children}</ButtonText>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
