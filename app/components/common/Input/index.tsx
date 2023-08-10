@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput, TextInputProps, View } from "react-native";
 import { useFocus } from "@/app/hooks/useFocus";
 import { Label } from "@/app/components/typography/Label";
@@ -18,10 +18,17 @@ export const Input = ({
   editable = true,
   error,
   secureTextEntry,
+  style,
+  defaultValue,
   ...props
 }: InputProps) => {
   const { isFocused, methods } = useFocus();
   const { display, toggleMethods } = useSecureToggle(secureTextEntry);
+  const [text, setText] = useState(defaultValue);
+
+  useEffect(() => {
+    setText(defaultValue);
+  }, [defaultValue]);
 
   return (
     <View style={inputStyle.container}>
@@ -38,13 +45,16 @@ export const Input = ({
             isFocused && { borderColor: Colors.plum },
             !!error && !!editable && { borderColor: Colors.error },
             !editable && inputStyle.disabled,
+            style,
           ]}
+          onChangeText={setText}
           {...{
             ...methods,
             ...props,
             editable,
             secureTextEntry: toggleMethods.isSecure,
           }}
+          value={text}
         />
         {display && <SecureToggleIcons {...toggleMethods} />}
       </View>
