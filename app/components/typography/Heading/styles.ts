@@ -19,6 +19,6 @@ export const headingStyles = StyleSheet.create({
   },
   h4: {
     fontFamily: FontName.PoppinsSemiBold,
-    fontSize: 18,
+    fontSize: 20,
   },
 } as Record<HeadingLevels, object>);
