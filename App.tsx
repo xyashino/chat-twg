@@ -8,7 +8,9 @@ import { LoginScreen } from "@/app/screens/LoginScreen";
 import { SingUpScreen } from "@/app/screens/SingUpScreen";
 import { ChatScreen } from "@/app/screens/ChatScreen";
 import { RoomsScreen } from "@/app/screens/RoomsScreen";
-import {RootStackParamList} from "@/app/types/root-params";
+import { RootStackParamList } from "@/app/types/root-params";
+import { ApolloProvider } from "@apollo/client";
+import { useAuthStore } from "@/app/store/useAuthStore";
 
 const Stack = createStackNavigator<RootStackParamList>();
 export default function App() {
@@ -19,19 +21,41 @@ export default function App() {
     [FontName.PoppinsMedium]: require("@assets/fonts/Poppins-Medium.ttf"),
   });
 
+  const { token, client } = useAuthStore();
+
   if (!fontsLoaded) return null;
 
   return (
+    <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={NavigationName.Rooms}
+          initialRouteName={
+            token === null ? NavigationName.SignUp : NavigationName.Rooms
+          }
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name={NavigationName.Rooms} component={RoomsScreen} />
-          <Stack.Screen name={NavigationName.Login} component={LoginScreen} />
-          <Stack.Screen name={NavigationName.SignUp} component={SingUpScreen} />
-          <Stack.Screen name={NavigationName.Chat} component={ChatScreen} />
+          {token === null ? (
+            <>
+              <Stack.Screen
+                name={NavigationName.Login}
+                component={LoginScreen}
+              />
+              <Stack.Screen
+                name={NavigationName.SignUp}
+                component={SingUpScreen}
+              />
+            </>
+          ) : (
+            <>
+              <Stack.Screen
+                name={NavigationName.Rooms}
+                component={RoomsScreen}
+              />
+              <Stack.Screen name={NavigationName.Chat} component={ChatScreen} />
+            </>
+          )}
         </Stack.Navigator>
       </NavigationContainer>
+    </ApolloProvider>
   );
 }
