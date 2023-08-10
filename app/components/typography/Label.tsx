@@ -7,7 +7,7 @@ import { Colors } from "@/app/constants/styles/color";
 export const Label = ({
   children,
   style,
-  color = "black",
+  color = "white",
 }: ReusableItemProps) => (
   <Text
     style={[
