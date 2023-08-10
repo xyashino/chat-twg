@@ -2,31 +2,19 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Input } from "@/app/components/common/Input";
 import { Button } from "@/app/components/common/buttons/Button";
-import { useForm, Controller } from "react-hook-form";
-import { LoginFormData } from "@/app/types/login-form-data";
+import { Controller } from "react-hook-form";
 import { useLogin } from "@/app/hooks/useLogin";
-import {yupResolver} from "@hookform/resolvers/yup";
-import {LoginFormSchema} from "@/app/screens/LoginScreen/login-form-schema";
 
 export const LoginForm = () => {
-  const formOptions = {resolver: yupResolver(LoginFormSchema)}
-
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-    setError,
-  } = useForm<LoginFormData>(formOptions);
-
-  const { onLogin, loading } = useLogin(setError);
+  const { onLogin, loading, control, register, errors, handleSubmit } =
+    useLogin();
 
   return (
     <>
       <View style={styles.form}>
         <Controller
           control={control}
-          {...register('email')}
+          {...register("email")}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="e-mail address"
@@ -39,7 +27,7 @@ export const LoginForm = () => {
         />
         <Controller
           control={control}
-          {...register('password')}
+          {...register("password")}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="password"
@@ -73,7 +61,6 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     flexGrow: 1,
   },
-
   button: {
     marginTop: "auto",
   },
