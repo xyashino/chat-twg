@@ -11,7 +11,6 @@ export const useLogin = (setError: UseFormSetError<LoginFormData>) => {
     errorPolicy: "all",
   });
   const loginMethod = async (formData: LoginFormData) => {
-    try {
       const { data, errors: serverErrors } = await loginUser({
         variables: { ...formData },
       });
@@ -24,9 +23,6 @@ export const useLogin = (setError: UseFormSetError<LoginFormData>) => {
         setToken(data.loginUser.token);
         setUser(data.loginUser.user);
       }
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   return { loading, loginMethod };

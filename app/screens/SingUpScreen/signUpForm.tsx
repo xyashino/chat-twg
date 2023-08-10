@@ -96,7 +96,11 @@ export const SignUpForm = () => {
       {errors.root?.message && (
         <Caption color="error"> {errors.root?.message} </Caption>
       )}
-      <Button style={styles.button} onPress={handleSubmit(creatAccount)} type={loading ? "disabled" : "default"}>
+      <Button
+        style={styles.button}
+        onPress={handleSubmit(creatAccount)}
+        type={loading ? "disabled" : "default"}
+      >
         Sign up
       </Button>
     </>
