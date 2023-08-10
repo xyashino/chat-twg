@@ -15,7 +15,7 @@ const captionStyles = StyleSheet.create({
       android: {
         fontFamily: FontName.Poppins,
         fontSize: 10,
-        lineHeight: 10,
+        lineHeight: 12,
       },
     }),
   },
@@ -24,7 +24,7 @@ const captionStyles = StyleSheet.create({
 export const Caption = ({
   children,
   color = "black",
-  style = {},
+  style,
 }: ReusableItemProps) => (
   <Text style={[{ ...captionStyles.text, color: Colors[color] }, style]}>
     {children}
