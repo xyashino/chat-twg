@@ -9,7 +9,7 @@ interface Props extends PropsWithChildren {
 export const HeaderContainer = ({ children, actionSection }: Props) => (
   <View style={headerContainerStyle.mainContainer}>
     <View style={headerContainerStyle.contentWrapper}>
-      {children}
+      <View style={headerContainerStyle.content}>{children}</View>
       <View style={headerContainerStyle.actionsWrapper}>{actionSection}</View>
     </View>
   </View>
@@ -23,6 +23,9 @@ const headerContainerStyle = StyleSheet.create({
     backgroundColor: Colors.blueSoft,
     paddingHorizontal: 20,
     paddingVertical: 35,
+  },
+  content: {
+    maxWidth: "70%",
   },
   contentWrapper: {
     display: "flex",
