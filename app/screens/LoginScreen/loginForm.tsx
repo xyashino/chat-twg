@@ -12,7 +12,6 @@ export const LoginForm = () => {
   const formOptions = { resolver: yupResolver(LoginFormSchema) };
 
   const {
-    register,
     control,
     handleSubmit,
     formState: { errors },
@@ -25,7 +24,7 @@ export const LoginForm = () => {
       <View style={styles.form}>
         <Controller
           control={control}
-          {...register("email")}
+          name="email"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="e-mail address"
@@ -38,7 +37,7 @@ export const LoginForm = () => {
         />
         <Controller
           control={control}
-          {...register("password")}
+          name="password"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="password"

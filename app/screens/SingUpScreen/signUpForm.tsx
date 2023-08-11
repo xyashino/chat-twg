@@ -16,7 +16,6 @@ export const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     control,
-    register,
     setError,
   } = useForm<RegisterUserData>(formOptions);
   const { loading, creatAccount } = useRegistration(setError);
@@ -26,7 +25,7 @@ export const SignUpForm = () => {
       <View style={styles.form}>
         <Controller
           control={control}
-          {...register("email")}
+          name="email"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="e-mail address"
@@ -39,7 +38,7 @@ export const SignUpForm = () => {
         />
         <Controller
           control={control}
-          {...register("firstName")}
+          name="firstName"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="first name"
@@ -52,7 +51,7 @@ export const SignUpForm = () => {
         />
         <Controller
           control={control}
-          {...register("lastName")}
+          name="lastName"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="last name"
@@ -66,7 +65,7 @@ export const SignUpForm = () => {
 
         <Controller
           control={control}
-          {...register("password")}
+          name="password"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="password"
@@ -80,7 +79,7 @@ export const SignUpForm = () => {
         />
         <Controller
           control={control}
-          {...register("passwordConfirmation")}
+          name="passwordConfirmation"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="confirm password"
